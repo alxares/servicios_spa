@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista Tree -->
+    <record id="view_spa_service_tree" model="ir.ui.view">
+        <field name="name">spa.service.tree</field>
+        <field name="model">spa.service</field>
+        <field name="arch" type="xml">
+            <tree string="Servicios del Spa">
+                <field name="client_id"/>
+                <field name="employee_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form -->
+    <record id="view_spa_service_form" model="ir.ui.view">
+        <field name="name">spa.service.form</field>
+        <field name="model">spa.service</field>
+        <field name="arch" type="xml">
+            <form string="Servicio del Spa">
+                <header>
+                    <!-- Botones de acción -->
+                    <button name="create_sale_order" type="object" string="Crear Orden de Venta" class="btn-primary" 
+                            states="draft"/>
+                    <button name="create_pos_order" type="object" string="Crear Orden POS" class="btn-success" 
+                            states="draft"/>
+                    <button name="set_to_draft" type="object" string="Reiniciar a Borrador" class="btn-secondary" 
+                            states="confirmed,sale_order,pos_order"/>
+                    
+                    <!-- Estado -->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,sale_order,pos_order"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="client_id"/>
+                        <field name="employee_id"/>
+                    </group>
+                    <group>
+                        <field name="service_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acciones -->
+    <record id="action_spa_service" model="ir.actions.act_window">
+        <field name="name">Servicios del Spa</field>
+        <field name="res_model">spa.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                Gestiona los servicios del Spa aquí.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menú -->
+    <menuitem id="menu_spa_service_root" name="Spa" sequence="10"/>
+    <menuitem id="menu_spa_service" name="Servicios" parent="menu_spa_service_root" action="action_spa_service" 
+              sequence="10"/>
+</odoo>

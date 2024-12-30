@@ -1,0 +1,5 @@
+<record id="spa_service_action" model="ir.actions.act_window">
+    <field name="name">Servicios del Spa</field>
+    <field name="res_model">spa.service</field>
+    <field name="view_mode">tree,form</field>
+</record>

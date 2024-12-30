@@ -1,0 +1,13 @@
+<odoo>
+    <record id="spa_service_demo_1" model="spa.service">
+        <field name="client_id" ref="base.res_partner_1"/>
+        <field name="employee_id" ref="base.user_admin"/>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="spa_service_demo_2" model="spa.service">
+        <field name="client_id" ref="base.res_partner_2"/>
+        <field name="employee_id" ref="base.user_demo"/>
+        <field name="state">confirmed</field>
+    </record>
+</odoo>
